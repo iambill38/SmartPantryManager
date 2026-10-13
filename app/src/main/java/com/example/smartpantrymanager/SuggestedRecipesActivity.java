@@ -1,9 +1,10 @@
 package com.example.smartpantrymanager;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -37,13 +38,16 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         textNoMatches = findViewById(R.id.textNoMatches);
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationOnClickListener(v -> finish());
         toolbar.setTitle("Suggested Recipes");
-        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationOnClickListener(v -> finish());
 
-        adapter = new RecipeAdapter(recipe ->
-                // Recipe Detail screen is built in the next task
-                Toast.makeText(this, "Detail screen coming next", Toast.LENGTH_SHORT).show());
+        // Tapping a recipe opens the detail screen and passes the recipe id
+        adapter = new RecipeAdapter(recipe -> {
+            Intent intent = new Intent(this, RecipeDetailActivity.class);
+            intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.getId());
+            startActivity(intent);
+        });
 
         RecyclerView recycler = findViewById(R.id.recyclerRecipes);
         recycler.setLayoutManager(new LinearLayoutManager(this));

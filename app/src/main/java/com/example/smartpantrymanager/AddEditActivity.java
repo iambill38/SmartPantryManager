@@ -56,6 +56,8 @@ public class AddEditActivity extends AppCompatActivity {
         Button buttonClearDate = findViewById(R.id.buttonClearDate);
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
 
+        toolbar.setTitle("Add Ingredient");
+        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
         spinnerUnit.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, UNITS));
 
