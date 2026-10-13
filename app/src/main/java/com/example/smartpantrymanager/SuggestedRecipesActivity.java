@@ -38,6 +38,8 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.setTitle("Suggested Recipes");
+        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
 
         adapter = new RecipeAdapter(recipe ->
                 // Recipe Detail screen is built in the next task

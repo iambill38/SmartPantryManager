@@ -1,7 +1,10 @@
 package com.example.smartpantrymanager;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -37,6 +41,25 @@ public class MainActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         textEmpty = findViewById(R.id.textEmpty);
+
+        // Toolbar: title, white text, and the menu button to Suggested Recipes
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("My Pantry");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.inflateMenu(R.menu.main_menu);
+        MenuItem suggestedItem = toolbar.getMenu().findItem(R.id.action_suggested);
+        Drawable icon = suggestedItem.getIcon();
+        if (icon != null) {
+            icon.mutate().setTint(Color.WHITE);
+            suggestedItem.setIcon(icon);
+        }
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_suggested) {
+                startActivity(new Intent(this, SuggestedRecipesActivity.class));
+                return true;
+            }
+            return false;
+        });
 
         adapter = new PantryAdapter(new PantryAdapter.OnItemActionListener() {
             @Override
