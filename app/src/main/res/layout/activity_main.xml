@@ -8,15 +8,24 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:title="My Pantry"
-        android:titleTextColor="?attr/colorOnPrimary" />
+        android:background="?attr/colorPrimary" />
+
+    <TextView
+        android:id="@+id/textAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="#FFF3CD"
+        android:padding="12dp"
+        android:textColor="#664D03"
+        android:textSize="14sp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPantry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/textAlert"
         android:clipToPadding="false"
         android:padding="8dp" />
 
